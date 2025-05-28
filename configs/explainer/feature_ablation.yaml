@@ -1,0 +1,27 @@
+defaults:
+  - _self_
+  - noise_tunnel: default
+
+_partial_: true
+_target_: explainers.FeatureAblation
+
+method:
+  _partial_: true
+  _target_: captum.attr.FeatureAblation
+
+area: 0.3
+cell_size: 16
+binarize: true
+cell_strided: false
+quantile: null
+scale: false
+smoothing: false
+ignore_over_quantile: null
+
+get_attr_maps_kwargs:
+  perturbations_per_eval: 1
+  group_width: 2
+  group_height: 2
+  show_progress: True
+
+sign: absolute_value

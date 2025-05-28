@@ -1,0 +1,21 @@
+defaults:
+  - _self_
+  - dataset: imagenet_for_preds
+  - classifier: imagenet_resnet50
+
+exp:
+  run_func: 
+    _target_: experiment.run_compute_clf_preds
+
+  seed: 42
+  log_dir: # set during runtime to automatically created dir
+  task: multiclass # either multilabel or multiclass
+
+  split_name: validation
+  batch_size: 2048
+  filter_id: ???
+
+fabric:
+  _target_: lightning.Fabric
+  num_nodes: 1
+  devices: 1

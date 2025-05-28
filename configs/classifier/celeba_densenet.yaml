@@ -1,0 +1,3 @@
+_target_: classifiers.CelebADenseNet
+path_ckpt: data/weights/classifiers/celeba/densenet/ckpt.pth
+label_id: ${exp.label_id}

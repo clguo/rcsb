@@ -1,0 +1,31 @@
+defaults:
+  - _self_
+  - noise_tunnel: default
+
+_partial_: true
+_target_: explainers.Occlusion
+
+method:
+  _partial_: true
+  _target_: captum.attr.Occlusion
+
+area: 0.3
+cell_size: 16
+binarize: true
+cell_strided: false
+quantile: null
+scale: false
+smoothing: false
+ignore_over_quantile: null
+
+get_attr_maps_kwargs:
+  sliding_window_shapes:
+    - 3
+    - 60
+    - 60
+  strides:
+    - 3
+    - 20
+    - 20
+    
+sign: absolute_value

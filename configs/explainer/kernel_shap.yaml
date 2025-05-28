@@ -1,0 +1,28 @@
+defaults:
+  - _self_
+  - noise_tunnel: default
+
+_partial_: true
+_target_: explainers.KernelShap
+
+method:
+  _partial_: true
+  _target_: captum.attr.KernelShap
+
+area: 0.3
+cell_size: 16
+binarize: true
+cell_strided: false
+quantile: null
+scale: false
+smoothing: false
+ignore_over_quantile: null
+
+get_attr_maps_kwargs:
+  n_samples: 16384
+  perturbations_per_eval: 2048
+  group_width: 32
+  group_height: 32
+  show_progress: true
+
+sign: absolute_value

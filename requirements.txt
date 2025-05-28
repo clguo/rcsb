@@ -1,0 +1,11 @@
+torch
+torchvision
+hydra-core
+scikit-image
+captum[pytorch]
+wandb
+tensorboard
+lightning
+pandas
+blobfile
+datasets

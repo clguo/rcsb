@@ -1,0 +1,26 @@
+defaults:
+  - _self_
+
+noise_tunnel: null
+
+_partial_: true
+_target_: explainers.LangSAMMaskGenerator
+
+method:
+  _partial_: true
+  _target_: explainers.lang_sam.LangSAM
+
+area: 0.3
+cell_size: null
+binarize: true
+cell_strided: false
+quantile: null
+scale: false
+smoothing: false
+ignore_over_quantile: null
+
+get_attr_maps_kwargs:
+  text_prompt: ???
+  use_binary_masks: true
+    
+sign: absolute_value

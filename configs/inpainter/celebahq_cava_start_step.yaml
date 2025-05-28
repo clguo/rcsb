@@ -1,0 +1,53 @@
+_partial_: true
+_target_: inpainters.CDDB
+
+deep: true
+log_trajs: false
+
+model_partial:
+  _partial_: true
+  _target_: inpainters.src_cddb.i2sb.network.Image256Net
+
+  cond: ${inpainter.subconfig.cond_x1}
+
+  model_kwargs:
+    attention_resolutions: 32,16,8
+    channel_mult: ''
+    class_cond: false
+    dropout: 0.0
+    image_size: 256
+    learn_sigma: false
+    num_channels: 256
+    num_head_channels: 64
+    num_heads: 4
+    num_heads_upsample: -1
+    num_res_blocks: 2
+    resblock_updown: true
+    use_checkpoint: false
+    use_fp16: false
+    use_new_attention_order: false
+    use_scale_shift_norm: true
+
+subconfig:
+  T: 1.0
+  t0: 0.0001
+  step_size: 0.0
+  add_x1_noise: false
+  batch_size: 256
+  beta_max: 1.0
+  clip_denoise: false
+  cond_x1: false
+
+  use_fp16: ${inpainter.model_partial.model_kwargs.use_fp16}
+  image_size: 256
+  interval: 1000
+  start_step: 700
+  nfe: 100
+  l2_norm: 0.0
+
+  corrupt: 'inpaint-freeform2030'
+  name: 'inpaint-freeform2030'
+  load: data/weights/inpainters/cddb/celebahq/freeform_20_30/latest.pt # checkpoint path
+  
+  ot_ode: true
+  seed: ${exp.seed}

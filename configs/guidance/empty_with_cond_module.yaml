@@ -1,0 +1,49 @@
+_partial_: true
+_target_: guidance.EmptyGuidanceWithCondModule
+
+uses_target_clf: true
+
+scale: 
+  _target_: schedulers.ConstScheduler
+  total_timesteps: -1
+  value: 1.5
+
+clf_scale:
+  _target_: schedulers.ConstScheduler
+  total_timesteps: -1
+  value: 1.0
+
+from_tweedie: true
+grad_from: x_t
+
+normalize: false
+adaptive_normalize: true
+
+stabilization:
+  _target_: guidance.utils.ADAMGradientStabilization
+  beta_1: 0.9
+  beta_2: 0.999
+  eps: 1e-8
+  reset_step: -1
+
+require_grad: true
+keep_graph: true
+
+# loss functions for gradient
+lpips_net: vgg
+lpips_scale:
+  _target_: schedulers.ConstScheduler
+  total_timesteps: -1
+  value: 0
+rescale_lpips: true
+
+# other functions
+other_loss_functions:
+  _target_: guidance.utils.LossFunctionCalculator
+  l1_scale: 0.0
+  l2_scale: 0.0
+  tv_scale: 0.0
+  ssim_scale: 0.0
+  rescale: true
+
+log: true

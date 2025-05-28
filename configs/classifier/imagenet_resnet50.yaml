@@ -1,0 +1,2 @@
+_target_: classifiers.ResNet50
+path_ckpt:

@@ -1,0 +1,4 @@
+_target_: schedulers.LinearScheduler
+total_timesteps: 1000
+start: 1 # At t = 0
+end: 0 # At t = T

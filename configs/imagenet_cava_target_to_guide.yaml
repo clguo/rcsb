@@ -1,0 +1,39 @@
+defaults:
+  - _self_
+  - dataset: imagenet
+  - classifier: imagenet_resnet50
+  - explainer: integrated_gradients
+  - guidance: imagenet_cava_stable_adaptive
+  - inpainter: imagenet_cava_start_step
+  - evaluation: predictions_cefilter_cfloss
+
+exp:
+  run_func: 
+    _target_: experiment.run_cava
+
+  seed: 42
+  log_dir: # set during runtime to automatically created dir
+  n_unique: 1 # number of unique images per batch
+  n_inpaints: 2 # number of copies of each unique image to inpaint
+  # effective batch size is equal to n_unique * n_inpaints
+  batch_multip: 1 # batch multiplier for effective batch size
+  n_samples: 8 # number of total images from the dataset
+  target_id: ??? # id of target label for which attribution map is computed
+  filter_id: ${exp.target_id} # filter dataset to include only this label
+  # it has to be both true and correctly predicted by the model
+  guide_id: ??? # id of label to which guide the inpainting
+  guide_depth: null # levels of tree to include for guidance classes
+  # used only when guide_id is None
+  task: multiclass # either multilabel or multiclass
+  n_classes: 1000
+
+fabric:
+  _target_: lightning.Fabric
+  num_nodes: 1
+  devices: 1
+
+wandb:
+  project: 
+  entity:
+  tags:
+  id:

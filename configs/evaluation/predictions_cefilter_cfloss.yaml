@@ -1,0 +1,16 @@
+_partial_: true
+_target_: evaluation.Evaluator
+metrics:
+  _target_: torch.nn.ModuleList
+  modules:
+    - _target_: evaluation.Predictions
+      task: ${exp.task}
+      n_classes: ${exp.n_classes}
+    - _target_: evaluation.CEFilter
+    - _target_: evaluation.CFLoss
+      lpips: 
+        _target_: lpips.LPIPS
+        net: vgg
+      lambda_param: 0.5
+      use_adaptive_lambda: false
+      

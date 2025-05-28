@@ -1,0 +1,41 @@
+defaults:
+  - _self_
+  - dataset: celebahq
+  - classifier: celebahq_densenet
+  - explainer: integrated_gradients
+  - guidance: celebahq_cava_stable_adaptive
+  - inpainter: celebahq_cava_start_step
+  - evaluation: celebahq_predictions_cefilter_cfloss
+
+exp:
+  run_func: 
+    _target_: experiment.run_cava
+
+  seed: 42
+  log_dir: # set during runtime to automatically created dir
+
+  n_unique: 1 # number of unique images per batch
+  n_inpaints: 2 # number of copies of each unique image to inpaint
+  # effective batch size is equal to n_unique * n_inpaints
+  batch_multip: 1 # batch multiplier for effective batch size
+  n_samples: 8 # number of total images from the dataset
+
+  label_id: ???
+  target_id: ${exp.label_id} # id of label for which attribution map is computed
+  guide_id: ${exp.label_id} # id of label to which guide the inpainting
+
+  guide_depth: null # levels of tree to include for guidance classes
+  # used only when guide_id is None
+
+  task: multilabel # either multilabel or multiclass
+
+fabric:
+  _target_: lightning.Fabric
+  num_nodes: 1
+  devices: 1
+
+wandb:
+  project:
+  entity:
+  tags:
+  id:

@@ -1,0 +1,23 @@
+defaults:
+  - _self_
+  - noise_tunnel: default
+
+_partial_: true
+_target_: explainers.InputXGradient
+
+method:
+  _partial_: true
+  _target_: captum.attr.InputXGradient
+
+area: 0.3
+cell_size: 16
+binarize: true
+cell_strided: false
+quantile: null
+scale: false
+smoothing: false
+ignore_over_quantile: null
+
+get_attr_maps_kwargs:
+
+sign: absolute_value

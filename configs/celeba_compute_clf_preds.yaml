@@ -1,0 +1,23 @@
+defaults:
+  - _self_
+  - dataset: celeba
+  - classifier: celeba_densenet
+exp:
+  run_func: 
+    _target_: experiment.run_compute_clf_preds
+
+  seed: 42
+  log_dir: # set during runtime to automatically created dir
+  task: multilabel # either multilabel or multiclass
+
+  split_name: train
+  batch_size: 8192
+  n_samples: 1_000_000
+
+  label_id: null
+  n_unique: ${exp.batch_size}
+
+fabric:
+  _target_: lightning.Fabric
+  num_nodes: 1
+  devices: 1
