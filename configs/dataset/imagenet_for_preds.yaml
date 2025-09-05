@@ -1,0 +1,10 @@
+_target_: torch.utils.data.DataLoader
+dataset: 
+  _target_: dataset.ImageNetDatasetForPreds
+  name: imagenet
+  split: ${exp.split_name}
+  path_data:
+  path_labels:
+  filter_id: ${exp.filter_id}
+batch_size: ${exp.batch_size}
+num_workers: 0

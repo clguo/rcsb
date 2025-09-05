@@ -1,0 +1,11 @@
+_target_: torch.utils.data.DataLoader
+dataset: 
+  _target_: dataset.MNISTDatasetForPreds
+  name: mnist
+  split: ${exp.split_name}
+  path_data: data/mnist
+  path_labels:
+  path_predictions: 
+  filter_id: ${exp.filter_id}
+batch_size: ${exp.batch_size}
+num_workers: 0

@@ -1,0 +1,13 @@
+_target_: torch.utils.data.DataLoader
+dataset: 
+  _target_: dataset.MNISTDataset
+  name: mnist
+  split: validation
+  path_data: data/mnist
+  path_labels:
+  path_predictions: 
+  n_samples: ${exp.n_samples}
+  filter_id: ${exp.filter_id}
+  n_skip: 0 # skip this number of images
+batch_size: ${exp.n_unique}
+num_workers: 0

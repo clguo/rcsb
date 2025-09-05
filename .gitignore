@@ -1,5 +1,5 @@
 outputs
-data*
+data
 wandb
 **/__pycache__
 slurm_logs*

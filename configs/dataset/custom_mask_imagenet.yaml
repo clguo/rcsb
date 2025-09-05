@@ -1,0 +1,10 @@
+_target_: torch.utils.data.DataLoader
+dataset: 
+  _target_: dataset.CustomMaskImagenetDataset
+  split: validation
+  path_data: custom_masks/imagenet
+  path_predictions: data/metadata/imagenet/predictions/validation/classifiers.ResNet50/data.csv
+  n_samples: ${exp.n_samples}
+  filter_id: ${exp.filter_id}
+batch_size: ${exp.n_unique}
+num_workers: 0

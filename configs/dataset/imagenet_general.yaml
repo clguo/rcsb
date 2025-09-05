@@ -1,0 +1,16 @@
+_target_: torch.utils.data.DataLoader
+dataset: 
+  _target_: dataset.imagenet_general.ImageNetGeneralDataset
+  name: imagenet
+  split: validation
+  path_data:
+  path_labels:
+  path_predictions: ???
+  n_samples: ${exp.n_samples}
+  correct_pred: ???
+  filter_id_gt: ${exp.filter_id_gt}
+  guide_id: ${exp.guide_id}
+  n_skip: 0 # skip this number of images
+  # total dataset size is n_samples - n_skip
+batch_size: ${exp.n_unique}
+num_workers: 0
